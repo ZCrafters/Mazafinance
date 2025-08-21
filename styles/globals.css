@@ -9,3 +9,8 @@
 @import "./components.css";
 @import "./components/aurora.css";
 @import "./pages/index.css";
+@import "./pages/finance-ai.css";
+@import "./pages/games.css";
+@import "./pages/investment.css";
+@import "./pages/kentang.css";
+@import "./pages/maza.css";
