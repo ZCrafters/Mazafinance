@@ -1,0 +1,27 @@
+/* potongan style dari invesment.html dipisah ke file ini */
+
+.news-card { transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+.news-image { height: 200px; object-fit: cover; transition: transform 0.3s ease; }
+.news-card:hover .news-image { transform: scale(1.03); }
+.category-badge { position: absolute; top: 10px; right: 10px; z-index: 10; }
+
+.mobile-menu { display: none; width: 100%; background: white; position: absolute; top: 100%; left: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.mobile-menu.active { display: block; }
+.mobile-menu a { display: block; padding: 12px 20px; border-bottom: 1px solid #f3f4f6; }
+
+@media (max-width: 768px) {
+  .hero-content h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .hero-content p { font-size: 1rem; margin-bottom: 1.5rem; }
+  .search-container { flex-direction: column; gap: 10px; }
+  .search-container input { width: 100%; padding: 12px; }
+  .search-container button { width: 100%; position: relative; right: auto; top: auto; transform: none; }
+  .category-buttons { overflow-x: auto; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
+  .category-buttons::-webkit-scrollbar { display: none; }
+  .category-buttons > div { display: flex; gap: 8px; min-width: max-content; }
+  .category-buttons button { white-space: nowrap; padding: 6px 12px; font-size: .875rem; }
+}
+
+/* util kelas yang dipakai juga oleh maza */
+.feature-icon { width: 80px; height: 80px; display:flex; align-items:center; justify-content:center; border-radius: 24px; margin-bottom: 1.5rem; transition: all .3s ease; box-shadow: 0 4px 6px rgba(0,0,0,.05); }
+.nav-link:hover { color: #658657; }

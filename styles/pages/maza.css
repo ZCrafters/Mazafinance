@@ -1,0 +1,35 @@
+/* ==== dari maza.html <style> ==== */
+.gradient-bg { background: linear-gradient(135deg, #f5f7f4 0%, #e9eee7 100%); }
+.card-hover { transition: all 0.3s ease; }
+.card-hover:hover { transform: translateY(-5px) rotateX(5deg); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+.game-card:hover { transform: translateY(-5px) rotateY(5deg); }
+.investment-card { background: linear-gradient(135deg, #658657 0%, #85a37a 100%); }
+.game-card { background: linear-gradient(135deg, #4f6a45 0%, #658657 100%); transform-style: preserve-3d; perspective: 1000px; }
+.perspective-1000 { perspective: 1000px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.transform-rotate-y-180 { transform: rotateY(180deg); }
+.hover\:rotate-y-180:hover { transform: rotateY(180deg); }
+.game-preview-container:hover .game-world { transform: rotateY(180deg); }
+.game-card-front, .game-card-back { transition: all 0.6s ease; }
+.animate-bounce { animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(101,134,87,.5)} 100%{box-shadow:0 0 0 20px rgba(101,134,87,0)} }
+.dashboard-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem; }
+@media (max-width: 640px) {
+  .game-preview-container { height:180px; }
+  .game-card-front, .game-card-back { padding:1rem; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+.feature-icon { width:80px; height:80px; display:flex; align-items:center; justify-content:center; border-radius:24px; margin-bottom:1.5rem; transition:all .3s ease; box-shadow:0 4px 6px rgba(0,0,0,.05); }
+.glow { box-shadow:0 0 15px rgba(101,134,87,.5); }
+.nav-link:hover { color:#658657; }
+.stat-card { border-left:4px solid #658657; }
+.progress-bar { height:8px; border-radius:4px; overflow:hidden; }
+.progress-fill { height:100%; background-color:#658657; }
+.finance-chart { height:250px; position:relative; perspective:800px; transform-style:preserve-3d; }
+.chart-bar { position:absolute; bottom:0; width:30px; transform-style:preserve-3d; transition: all .5s cubic-bezier(0.68,-0.55,0.265,1.55); }
+.chart-bar:hover { transform: translateZ(30px) scale(1.1); }
+.ai-bubble { border-radius: 20px 20px 20px 0; }
+.user-bubble { border-radius: 20px 20px 0 20px; }
