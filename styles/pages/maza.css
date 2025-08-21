@@ -1,35 +1,131 @@
-/* ==== dari maza.html <style> ==== */
-.gradient-bg { background: linear-gradient(135deg, #f5f7f4 0%, #e9eee7 100%); }
-.card-hover { transition: all 0.3s ease; }
-.card-hover:hover { transform: translateY(-5px) rotateX(5deg); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
-.game-card:hover { transform: translateY(-5px) rotateY(5deg); }
-.investment-card { background: linear-gradient(135deg, #658657 0%, #85a37a 100%); }
-.game-card { background: linear-gradient(135deg, #4f6a45 0%, #658657 100%); transform-style: preserve-3d; perspective: 1000px; }
-.perspective-1000 { perspective: 1000px; }
-.transform-style-preserve-3d { transform-style: preserve-3d; }
-.backface-hidden { backface-visibility: hidden; }
-.transform-rotate-y-180 { transform: rotateY(180deg); }
-.hover\:rotate-y-180:hover { transform: rotateY(180deg); }
-.game-preview-container:hover .game-world { transform: rotateY(180deg); }
-.game-card-front, .game-card-back { transition: all 0.6s ease; }
-.animate-bounce { animation: bounce 2s infinite; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-.pulse { animation: pulse 2s infinite; }
-@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(101,134,87,.5)} 100%{box-shadow:0 0 0 20px rgba(101,134,87,0)} }
-.dashboard-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem; }
-@media (max-width: 640px) {
-  .game-preview-container { height:180px; }
-  .game-card-front, .game-card-back { padding:1rem; }
-  .dashboard-grid { grid-template-columns: 1fr; }
+/* Maza Dashboard Page Styles */
+
+/* Custom CSS Variables */
+.sage-50 { background-color: #f8f9f7; }
+.sage-100 { background-color: #f0f2ee; }
+.sage-400 { background-color: #84a98c; }
+.sage-500 { background-color: #6b8e73; }
+.sage-600 { background-color: #52795a; }
+.sage-700 { background-color: #3a5441; }
+.sage-800 { background-color: #2d4233; }
+.accent-400 { background-color: #fbbf24; }
+.accent-500 { background-color: #f59e0b; }
+
+.bg-sage-50 { background-color: #f8f9f7; }
+.bg-sage-100 { background-color: #f0f2ee; }
+.bg-sage-400 { background-color: #84a98c; }
+.bg-sage-500 { background-color: #6b8e73; }
+.bg-sage-600 { background-color: #52795a; }
+.bg-sage-700 { background-color: #3a5441; }
+.bg-sage-800 { background-color: #2d4233; }
+
+.text-sage-600 { color: #52795a; }
+.text-sage-700 { color: #3a5441; }
+.text-sage-800 { color: #2d4233; }
+.text-accent-500 { color: #f59e0b; }
+
+.border-sage-100 { border-color: #f0f2ee; }
+.border-sage-500 { border-color: #6b8e73; }
+
+/* Gradients */
+.gradient-bg {
+  background: linear-gradient(135deg, #f8f9f7 0%, #e8f5e8 100%);
 }
-.feature-icon { width:80px; height:80px; display:flex; align-items:center; justify-content:center; border-radius:24px; margin-bottom:1.5rem; transition:all .3s ease; box-shadow:0 4px 6px rgba(0,0,0,.05); }
-.glow { box-shadow:0 0 15px rgba(101,134,87,.5); }
-.nav-link:hover { color:#658657; }
-.stat-card { border-left:4px solid #658657; }
-.progress-bar { height:8px; border-radius:4px; overflow:hidden; }
-.progress-fill { height:100%; background-color:#658657; }
-.finance-chart { height:250px; position:relative; perspective:800px; transform-style:preserve-3d; }
-.chart-bar { position:absolute; bottom:0; width:30px; transform-style:preserve-3d; transition: all .5s cubic-bezier(0.68,-0.55,0.265,1.55); }
-.chart-bar:hover { transform: translateZ(30px) scale(1.1); }
-.ai-bubble { border-radius: 20px 20px 20px 0; }
-.user-bubble { border-radius: 20px 20px 0 20px; }
+
+.game-card {
+  background: linear-gradient(135deg, #84a98c 0%, #6b8e73 100%);
+}
+
+/* 3D Chart Styles */
+.finance-chart {
+  height: 120px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Feature Cards */
+.feature-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Progress Bars */
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #84a98c, #6b8e73);
+  border-radius: 0.25rem;
+  transition: width 0.5s ease;
+}
+
+/* AI Bubbles */
+.ai-bubble {
+  border-radius: 1rem 1rem 1rem 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-bubble {
+  border-radius: 1rem 1rem 0.25rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #52795a !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #84a98c;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feature-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .finance-chart {
+    height: 80px;
+  }
+}
+
+/* Animation Classes */
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Font Display Class */
+.font-display {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+}

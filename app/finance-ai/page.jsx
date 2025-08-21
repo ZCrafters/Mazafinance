@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import "@/styles/pages/finance-ai.css";
+import "../../styles/pages/finance-ai.css";
 
 export default function FinanceAIPage() {
   // theme

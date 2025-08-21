@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import "@/styles/pages/investment.css";
+import "../../styles/pages/investment.css";
 
 export default function InvestmentPage() {
   const [mobileOpen, setMobileOpen] = useState(false);

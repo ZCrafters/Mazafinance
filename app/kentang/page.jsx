@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import "@/styles/pages/kentang.css";
+import "../../styles/pages/kentang.css";
 
 export default function KentangPage() {
   // ===== THEME =====
@@ -38,23 +38,23 @@ export default function KentangPage() {
   }, [data]);
 
   // ===== HELPERS =====
-  const months = useMemo(
+  const months = useRef(
     () => ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],
     []
   );
   const fmtIDR = (n) =>
     new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(n);
 
-  const monthName = months[monthIdx];
+  const monthName = months.current[monthIdx];
   const monthlyTx = data?.[year]?.[monthName] ?? [];
 
-  const totals = useMemo(() => {
+  const totals = useRef(() => {
     const income = monthlyTx.filter(t => t.type === "Pendapatan").reduce((s,t)=>s+t.amount,0);
     const expense = monthlyTx.filter(t => t.type === "Pengeluaran").reduce((s,t)=>s+t.amount,0);
     return { income, expense, balance: income - expense };
   }, [monthlyTx]);
 
-  const categoryExpense = useMemo(() => {
+  const categoryExpense = useRef(() => {
     const acc = {};
     monthlyTx
       .filter(t=>t.type==="Pengeluaran")
@@ -138,8 +138,8 @@ export default function KentangPage() {
       Chart.defaults.borderColor = gridColor;
       Chart.defaults.color = styles.getPropertyValue("--text")?.trim() || "#2f3e46";
 
-      const labels = Object.keys(categoryExpense);
-      const values = Object.values(categoryExpense);
+      const labels = Object.keys(categoryExpense.current);
+      const values = Object.values(categoryExpense.current);
 
       chartInstance.current = new Chart(ctx, {
         type: "doughnut",
@@ -172,7 +172,7 @@ export default function KentangPage() {
   }, [categoryExpense, theme]);
 
   // ===== YEAR SELECT OPTIONS =====
-  const allYears = useMemo(() => {
+  const allYears = useRef(() => {
     const set = new Set(Object.keys(data));
     set.add(new Date().getFullYear().toString());
     return Array.from(set).sort((a,b)=>b-a);
@@ -190,7 +190,7 @@ export default function KentangPage() {
     if (!date || !category || !description || !type || !amount) return;
 
     const y = new Date(date).getFullYear().toString();
-    const m = months[new Date(date).getMonth()];
+    const m = months.current[new Date(date).getMonth()];
 
     setData(prev => {
       const next = { ...prev };
@@ -217,11 +217,11 @@ export default function KentangPage() {
   };
 
   // prepare yearly table rows
-  const yearlyRows = useMemo(() => {
+  const yearlyRows = useRef(() => {
     const ydata = data?.[ySummaryYear] || {};
     const rows = [];
     for (let i=0;i<12;i++){
-      const m = months[i];
+      const m = months.current[i];
       const list = ydata[m] || [];
       const inc = list.filter(t=>t.type==="Pendapatan").reduce((s,t)=>s+t.amount,0);
       const exp = list.filter(t=>t.type==="Pengeluaran").reduce((s,t)=>s+t.amount,0);
@@ -337,10 +337,10 @@ export default function KentangPage() {
 
             <div className="filters">
               <select value={year} onChange={(e)=>setYear(e.target.value)} className="form-input">
-                {allYears.map(y => <option key={y} value={y}>{y}</option>)}
+                {allYears.current.map(y => <option key={y} value={y}>{y}</option>)}
               </select>
               <select value={monthIdx} onChange={(e)=>setMonthIdx(parseInt(e.target.value))} className="form-input">
-                {months.map((m,i)=><option key={m} value={i}>{m}</option>)}
+                {months.current.map((m,i)=><option key={m} value={i}>{m}</option>)}
               </select>
             </div>
           </div>
@@ -348,15 +348,15 @@ export default function KentangPage() {
           <div className="grid-3 mb-6">
             <div className="pill pill-income">
               <p className="pill-label">Total Pendapatan</p>
-              <p className="pill-value">{fmtIDR(totals.income)}</p>
+              <p className="pill-value">{fmtIDR(totals.current.income)}</p>
             </div>
             <div className="pill pill-expense">
               <p className="pill-label">Total Pengeluaran</p>
-              <p className="pill-value">{fmtIDR(totals.expense)}</p>
+              <p className="pill-value">{fmtIDR(totals.current.expense)}</p>
             </div>
             <div className="pill pill-balance">
               <p className="pill-label">Saldo Bulan Ini</p>
-              <p className="pill-value">{fmtIDR(totals.balance)}</p>
+              <p className="pill-value">{fmtIDR(totals.current.balance)}</p>
             </div>
           </div>
 
@@ -408,7 +408,7 @@ export default function KentangPage() {
             <div className="mb-4">
               <label className="label">Pilih Tahun</label>
               <select className="form-input w-48" value={ySummaryYear} onChange={(e)=>setYSummaryYear(e.target.value)}>
-                {allYears.map(y => <option key={y} value={y}>{y}</option>)}
+                {allYears.current.map(y => <option key={y} value={y}>{y}</option>)}
               </select>
             </div>
 
@@ -423,10 +423,10 @@ export default function KentangPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {yearlyRows.every(r => (r.inc===0 && r.exp===0)) ? (
+                  {yearlyRows.current.every(r => (r.inc===0 && r.exp===0)) ? (
                     <tr><td colSpan={4} className="muted text-center py-4">Tidak ada data untuk tahun {ySummaryYear}.</td></tr>
                   ) : (
-                    yearlyRows.map(r => (
+                    yearlyRows.current.map(r => (
                       <tr key={r.m}>
                         <td>{r.m.substring(0,3)}</td>
                         <td>{fmtIDR(r.inc)}</td>

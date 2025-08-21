@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import "@/styles/pages/games.css";
+import "../styles/pages/games.css";
 
 // Three.js via dynamic import biar aman di client
 export default function GamesPage() {

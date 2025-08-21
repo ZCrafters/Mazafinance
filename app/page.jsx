@@ -7,8 +7,8 @@ export default function Page() {
   // state navigasi landing -> login
   const [showLogin, setShowLogin] = useState(false);
   // tab login/register
-  const [tab, setTab] = useState<"login" | "register">("login");
-  const authErrorRef = useRef<HTMLDivElement | null>(null);
+  const [tab, setTab] = useState("login");
+  const authErrorRef = useRef(null);
 
   // set body font + theme fallback
   useEffect(() => {

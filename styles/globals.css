@@ -2,15 +2,176 @@
 @tailwind components;
 @tailwind utilities;
 
-/* import gaya lama agar konsisten */
-@import "./theme.css";
-@import "./base.css";
-@import "./layout.css";
-@import "./components.css";
-@import "./components/aurora.css";
-@import "./pages/index.css";
-@import "./pages/finance-ai.css";
-@import "./pages/games.css";
-@import "./pages/investment.css";
-@import "./pages/kentang.css";
-@import "./pages/maza.css";
+/* Global CSS Variables */
+:root[data-theme="night"] {
+  --bg: #0f1419;
+  --card: #1a1f2e;
+  --card-border: #2d3748;
+  --text: #e2e8f0;
+  --text-muted: #a0aec0;
+  --primary: #84a98c;
+  --secondary: #cbd5e0;
+  --accent: #fbbf24;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --chart-grid: #374151;
+}
+
+:root[data-theme="day"] {
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --text: #1a202c;
+  --text-muted: #718096;
+  --primary: #84a98c;
+  --secondary: #4a5568;
+  --accent: #fbbf24;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --chart-grid: #e2e8f0;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Common Components */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--primary);
+}
+
+.solusi-list {
+  list-style: none;
+  padding: 0;
+}
+
+.solusi-list li {
+  padding: 0.25rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+}
+
+.solusi-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--primary) 85%, black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-input {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: var(--text);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(132, 169, 140, 0.1);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.text-secondary {
+  color: var(--text-muted);
+}
+
+/* Auth styles */
+.auth-tab {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.auth-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.auth-error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+/* Responsive utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 4rem;
+  }
+}
